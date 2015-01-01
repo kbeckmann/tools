@@ -5,11 +5,13 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-void run_code(char *buf) {
+void run_code(char *buf)
+{
 	(*(void(*)()) buf)();
 }
 
-void run_file(char *fname) {
+void run_file(char *fname)
+{
 	FILE* fp;
 	int fd;
 	off_t file_size;
@@ -54,7 +56,8 @@ void run_file(char *fname) {
 	run_code(buffer);
 }
 
-void print_help(char *s) {
+void print_help(char *s)
+{
 	printf(
 	"\n"
 	"Usage: %s [-f <file> | -e <code>]\n"

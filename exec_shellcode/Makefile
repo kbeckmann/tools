@@ -1,5 +1,18 @@
 CC=gcc
-CFLAGS=-z execstack
+CFLAGS=
+LDFLAGS=-z execstack
+SOURCES=exec_shellcode.c
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=exec_shellcode
 
-exec_shellcode: exec_shellcode.o
-	$(CC) -o exec_shellcode exec_shellcode.c -I.
+all: $(EXECUTABLE)
+	
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+
+.o:
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm -f $(EXECUTABLE) $(OBJECTS)
+
